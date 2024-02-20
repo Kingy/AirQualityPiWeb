@@ -8,7 +8,7 @@ const AppFooter = () => {
         <a href="https://airqualitypi.com" target="_blank" rel="noopener noreferrer">
           AirQuality<sup>pi</sup>
         </a>
-        <span className="ms-1">&copy; 2023.</span>
+        <span className="ms-1">&copy; Jamie Gracie 2024.</span>
       </div>
     </CFooter>
   )
