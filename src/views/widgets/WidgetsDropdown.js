@@ -11,7 +11,9 @@ import {
 import { getStyle } from '@coreui/utils'
 import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
-import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
+import { cilOptions } from '@coreui/icons'
+
+import PMS5003LatestData from 'src/components/PMS5003LatestData'
 
 const WidgetsDropdown = () => {
   return (
@@ -22,7 +24,7 @@ const WidgetsDropdown = () => {
           color="primary"
           value={
             <>
-              493 <span className="fs-6 fw-normal">(µg/m³)</span>
+              <PMS5003LatestData />
             </>
           }
           title="PM 10"
