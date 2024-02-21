@@ -12,10 +12,11 @@ import {
   CNavItem,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilMenu } from '@coreui/icons'
+import { cilMenu, cilSun } from '@coreui/icons'
 
 import { AppBreadcrumb } from './index'
 import { logo } from 'src/assets/brand/logo'
+import WindIndicator from './WindDirection'
 
 const AppHeader = () => {
   const dispatch = useDispatch()
@@ -40,10 +41,28 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
+        <CHeaderNav className="ms-auto">
+          <CNavItem>
+            Hamala Weather: <CIcon icon={cilSun} size="lg" /> 19.9&deg;C (Feels like 22.3&deg;C)
+          </CNavItem>
+          <li className="nav-item py-1">
+            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
+          </li>
+          <CNavItem>
+            <WindIndicator />
+          </CNavItem>
+          <li className="nav-item py-1">
+            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
+          </li>
+          <CNavItem>Humidity 62%</CNavItem>
+        </CHeaderNav>
       </CContainer>
       <CHeaderDivider />
       <CContainer fluid>
         <AppBreadcrumb />
+        <CHeaderNav className="ms-auto">
+          <CNavItem>Last updated: 21st February 2024 10:45am</CNavItem>
+        </CHeaderNav>
       </CContainer>
     </CHeader>
   )
