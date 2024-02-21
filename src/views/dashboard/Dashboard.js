@@ -15,10 +15,11 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import { CChartLine, CChartDoughnut } from '@coreui/react-chartjs'
+import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils'
 
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
+import PMS5003PM2_5Chart from '../../components/PMS5003PM2_5Chart'
 
 const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
@@ -54,47 +55,6 @@ const Dashboard = () => {
         pm1_0: '164',
         pm2_5: '294',
         pm10: '315',
-      },
-    },
-  ]
-
-  var dnOptions = {
-    tooltips: {
-      backgroundColor: 'rgb(255,255,255)',
-      bodyFontColor: '#858796',
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: false,
-    },
-    cutout: '80%',
-  }
-
-  var dnPlugins = [
-    {
-      id: 'text',
-      beforeDraw: function (chart, a, b) {
-        var width = chart.width,
-          height = chart.height,
-          ctx = chart.ctx
-
-        ctx.restore()
-        var fontSize = (height / 120).toFixed(2)
-        ctx.font = fontSize + 'em sans-serif'
-        ctx.textBaseline = 'middle'
-        ctx.fillStyle = '#5a5c69'
-
-        var text = '25µg/m³',
-          textX = Math.round((width - ctx.measureText(text).width) / 2),
-          textY = height / 1.8
-
-        ctx.fillText(text, textX, textY)
-        ctx.save()
       },
     },
   ]
@@ -252,20 +212,7 @@ const Dashboard = () => {
           <CCard className="mb-4">
             <CCardHeader>PM2.5 Reading</CCardHeader>
             <CCardBody>
-              <CChartDoughnut
-                data={{
-                  labels: ['PM2.5'],
-                  datasets: [
-                    {
-                      backgroundColor: ['#e74a3b'],
-                      hoverBorderColor: 'rgba(234, 236, 244, 1)',
-                      data: [100],
-                    },
-                  ],
-                }}
-                options={dnOptions}
-                plugins={dnPlugins}
-              />
+              <PMS5003PM2_5Chart />
             </CCardBody>
           </CCard>
         </CCol>

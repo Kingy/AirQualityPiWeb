@@ -12,7 +12,7 @@ const PMS5003WidgetGraph = () => {
         label: 'PM10',
         backgroundColor: 'transparent',
         borderColor: 'rgba(255,255,255,.55)',
-        pointBackgroundColor: getStyle('--cui-success'),
+        pointBackgroundColor: getStyle('--cui-primary'),
         data: [],
       },
     ],
@@ -41,8 +41,6 @@ const PMS5003WidgetGraph = () => {
 
     fetchData()
   }, [data])
-
-  console.log(chartData)
 
   return (
     <CChartLine
