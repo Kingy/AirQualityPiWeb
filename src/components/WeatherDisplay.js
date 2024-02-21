@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faSun,
   faMoon,
-  faCloudRain,
   faSnowflake,
   faSmog,
   faWind,
   faCloud,
+  faCloudShowersHeavy,
   faCloudSun,
   faCloudMoon,
 } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +16,7 @@ import {
 const weatherIconMap = {
   'clear-day': faSun,
   'clear-night': faMoon,
-  rain: faCloudRain,
+  rain: faCloudShowersHeavy,
   snow: faSnowflake,
   sleet: faSnowflake,
   wind: faWind,

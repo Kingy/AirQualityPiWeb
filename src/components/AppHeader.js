@@ -1,4 +1,5 @@
 import React from 'react'
+import { useWeather } from 'src/context/WeatherContext'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -22,6 +23,7 @@ import WeatherDisplay from './WeatherDisplay'
 const AppHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
+  const { data, loading, error } = useWeather()
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -42,27 +44,41 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
-        <CHeaderNav className="d-none d-md-flex ms-auto">
-          <CNavItem>
-            <WeatherDisplay
-              condition={'clear-night'}
-              temperature={'20.2'}
-              apparentTemperature={'22.7'}
-            />
-          </CNavItem>
-          <li className="nav-item py-1">
-            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
-          </li>
-          <CNavItem>
-            <WindIndicator direction={338} speed={20.2} />
-          </CNavItem>
-          <li className="nav-item py-1">
-            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
-          </li>
-          <CNavItem>
-            <small className="text-body text-opacity-75">Humidity 62%</small>
-          </CNavItem>
-        </CHeaderNav>
+        {loading && (
+          <CHeaderNav className="d-none d-md-flex ms-auto">
+            <CNavItem>
+              <small className="text-body text-opacity-75">Loading...</small>
+            </CNavItem>
+          </CHeaderNav>
+        )}
+        {data && (
+          <CHeaderNav className="d-none d-md-flex ms-auto">
+            <CNavItem>
+              <WeatherDisplay
+                condition={data.currently.icon}
+                temperature={data.currently.temperature}
+                apparentTemperature={data.currently.apparentTemperature}
+              />
+            </CNavItem>
+            <li className="nav-item py-1">
+              <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
+            </li>
+            <CNavItem>
+              <WindIndicator
+                direction={data.currently.windBearing}
+                speed={data.currently.windSpeed}
+              />
+            </CNavItem>
+            <li className="nav-item py-1">
+              <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
+            </li>
+            <CNavItem>
+              <small className="text-body text-opacity-75">
+                Humidity {data.currently.humidity * 100}%
+              </small>
+            </CNavItem>
+          </CHeaderNav>
+        )}
       </CContainer>
       <CHeaderDivider />
       <CContainer fluid>
@@ -77,22 +93,25 @@ const AppHeader = () => {
         <CHeaderNav className="ms-auto d-md-none">
           <CNavItem>
             <WeatherDisplay
-              condition={'clear-day'}
-              temperature={'20.2'}
-              apparentTemperature={'22.7'}
+              condition={data.currently.icon}
+              temperature={data.currently.temperature}
+              apparentTemperature={data.currently.apparentTemperature}
             />
           </CNavItem>
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
           <CNavItem>
-            <WindIndicator direction={338} speed={20.2} />
+            <WindIndicator
+              direction={data.currently.windBearing}
+              speed={data.currently.windSpeed}
+            />
           </CNavItem>
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
           <CNavItem>
-            <small className="text-body text-opacity-75">62%</small>
+            <small className="text-body text-opacity-75">62{data.currently.humidity * 100}%</small>
           </CNavItem>
           <CNavItem>
             <small className="text-body text-opacity-75">&nbsp;@ 21/02 13:05</small>
