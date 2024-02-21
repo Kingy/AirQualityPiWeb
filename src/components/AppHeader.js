@@ -17,6 +17,7 @@ import { cilMenu, cilSun } from '@coreui/icons'
 import { AppBreadcrumb } from './index'
 import { logo } from 'src/assets/brand/logo'
 import WindIndicator from './WindDirection'
+import WeatherDisplay from './WeatherDisplay'
 
 const AppHeader = () => {
   const dispatch = useDispatch()
@@ -41,27 +42,61 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
-        <CHeaderNav className="ms-auto">
+        <CHeaderNav className="d-none d-md-flex ms-auto">
           <CNavItem>
-            Hamala Weather: <CIcon icon={cilSun} size="lg" /> 19.9&deg;C (Feels like 22.3&deg;C)
+            <WeatherDisplay
+              condition={'clear-night'}
+              temperature={'20.2'}
+              apparentTemperature={'22.7'}
+            />
           </CNavItem>
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
           <CNavItem>
-            <WindIndicator />
+            <WindIndicator direction={338} speed={20.2} />
           </CNavItem>
           <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li>
-          <CNavItem>Humidity 62%</CNavItem>
+          <CNavItem>
+            <small className="text-body text-opacity-75">Humidity 62%</small>
+          </CNavItem>
         </CHeaderNav>
       </CContainer>
       <CHeaderDivider />
       <CContainer fluid>
         <AppBreadcrumb />
-        <CHeaderNav className="ms-auto">
-          <CNavItem>Last updated: 21st February 2024 10:45am</CNavItem>
+        <CHeaderNav className="d-none d-md-flex ms-auto">
+          <CNavItem>
+            <small className="text-body text-opacity-75">
+              Last updated: 21st February 2024 13:05
+            </small>
+          </CNavItem>
+        </CHeaderNav>
+        <CHeaderNav className="ms-auto d-md-none">
+          <CNavItem>
+            <WeatherDisplay
+              condition={'clear-day'}
+              temperature={'20.2'}
+              apparentTemperature={'22.7'}
+            />
+          </CNavItem>
+          <li className="nav-item py-1">
+            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
+          </li>
+          <CNavItem>
+            <WindIndicator direction={338} speed={20.2} />
+          </CNavItem>
+          <li className="nav-item py-1">
+            <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
+          </li>
+          <CNavItem>
+            <small className="text-body text-opacity-75">62%</small>
+          </CNavItem>
+          <CNavItem>
+            <small className="text-body text-opacity-75">&nbsp;@ 21/02 13:05</small>
+          </CNavItem>
         </CHeaderNav>
       </CContainer>
     </CHeader>
