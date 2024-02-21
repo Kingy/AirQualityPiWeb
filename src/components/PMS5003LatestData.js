@@ -9,7 +9,7 @@ const PMS5003LatestData = () => {
 
   return (
     <>
-      493 <span className="fs-6 fw-normal">(µg/m³)</span>
+      {data.data.PM10} <span className="fs-6 fw-normal">(µg/m³)</span>
     </>
   )
 }
