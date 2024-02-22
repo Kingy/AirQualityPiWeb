@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { getStyle } from '@coreui/utils'
-import { CChartLine } from '@coreui/react-chartjs'
+import { CChartLine, CChartBar } from '@coreui/react-chartjs'
 
-const WidgetGraph = ({ Data, BackGroundColor }) => {
+const WidgetGraph = ({
+  Data,
+  BackGroundColor,
+  Title,
+  Chart = 'line',
+  Fill = false,
+  Smooth = false,
+}) => {
   const [updateKey, setUpdateKey] = useState(0)
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
       {
-        label: 'PM10',
-        backgroundColor: 'transparent',
+        label: Title,
+        backgroundColor: 'rgba(255,255,255,.2)',
         borderColor: 'rgba(255,255,255,.55)',
         pointBackgroundColor: getStyle('--cui-' + BackGroundColor),
-        data: [],
+        data: [78, 81, 80, 45, 34, 12, 40],
+        fill: true,
       },
     ],
   })
@@ -64,8 +72,6 @@ const WidgetGraph = ({ Data, BackGroundColor }) => {
     const fetchData = async () => {
       let recentDataPoints = []
 
-      console.log('JAMIEEEEEEEE', Data)
-
       recentDataPoints = Data.slice(-10)
 
       const labels = recentDataPoints.map((point) =>
@@ -86,11 +92,25 @@ const WidgetGraph = ({ Data, BackGroundColor }) => {
       setChartData({
         ...chartData,
         labels: labels,
-        datasets: [{ ...chartData.datasets[0], data: dataPoints }],
+        datasets: [{ ...chartData.datasets[0], fill: Fill, data: dataPoints }],
       })
 
       setChartOptions((prevOptions) => ({
         ...prevOptions,
+        elements: {
+          line: {
+            // Keep tension the same for both, adjust as needed
+            tension: 0.4,
+            // Conditional setting for borderWidth based on Smooth
+            borderWidth: Smooth ? undefined : 1,
+          },
+          point: {
+            // Conditional setting for radius based on Smooth
+            radius: Smooth ? 0 : 4,
+            hitRadius: 10,
+            hoverRadius: 4,
+          },
+        },
         scales: {
           x: {
             grid: {
@@ -102,6 +122,7 @@ const WidgetGraph = ({ Data, BackGroundColor }) => {
             },
           },
           y: {
+            // Assume min and max are defined elsewhere
             min,
             max,
             display: false,
@@ -122,19 +143,35 @@ const WidgetGraph = ({ Data, BackGroundColor }) => {
   }, [])
 
   return (
-    <CChartLine
-      key={updateKey}
-      className="mt-3 mx-3"
-      style={{ height: '70px' }}
-      data={chartData}
-      options={chartOptions}
-    />
+    <>
+      {Chart === 'line' ? (
+        <CChartLine
+          key={updateKey}
+          className="mt-3 mx-3"
+          style={{ height: '70px' }}
+          data={chartData}
+          options={chartOptions}
+        />
+      ) : (
+        <CChartBar
+          key={updateKey}
+          className="mt-3 mx-3"
+          style={{ height: '70px' }}
+          data={chartData}
+          options={chartOptions}
+        />
+      )}
+    </>
   )
 }
 
 WidgetGraph.propTypes = {
   Data: PropTypes.array.isRequired,
   BackGroundColor: PropTypes.string.isRequired,
+  Title: PropTypes.string.isRequired,
+  Chart: PropTypes.string,
+  Fill: PropTypes.bool,
+  Smooth: PropTypes.bool,
 }
 
 export default WidgetGraph

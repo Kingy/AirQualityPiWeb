@@ -69,8 +69,6 @@ const PMS5003PM2_5Chart = () => {
           ...chartData,
           datasets: [{ ...chartData.datasets[0], backgroundColor: [getBackgroundColor(newPm2_5)] }],
         })
-
-        console.log('PM2_5', newPm2_5)
       }
     }
 
