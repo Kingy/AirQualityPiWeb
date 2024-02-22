@@ -89,11 +89,11 @@ const WidgetGraph = ({
       const min = minDataPoint - buffer
       const max = maxDataPoint + buffer
 
-      setChartData({
-        ...chartData,
+      setChartData((currentChartData) => ({
+        ...currentChartData,
         labels: labels,
-        datasets: [{ ...chartData.datasets[0], fill: Fill, data: dataPoints }],
-      })
+        datasets: [{ ...currentChartData.datasets[0], fill: Fill, data: dataPoints }],
+      }))
 
       setChartOptions((prevOptions) => ({
         ...prevOptions,
@@ -140,7 +140,7 @@ const WidgetGraph = ({
     }
 
     fetchData()
-  }, [])
+  }, [Data, Fill, Smooth])
 
   return (
     <>

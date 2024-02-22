@@ -65,10 +65,12 @@ const PMS5003PM2_5Chart = () => {
         setPm2_5(newPm2_5)
         setUpdateKey((prevKey) => prevKey + 1)
 
-        setChartData({
-          ...chartData,
-          datasets: [{ ...chartData.datasets[0], backgroundColor: [getBackgroundColor(newPm2_5)] }],
-        })
+        setChartData((currentChartData) => ({
+          ...currentChartData,
+          datasets: [
+            { ...currentChartData.datasets[0], backgroundColor: [getBackgroundColor(newPm2_5)] },
+          ],
+        }))
       }
     }
 
@@ -85,6 +87,9 @@ const PMS5003PM2_5Chart = () => {
       },
     ],
   })
+
+  if (loading) return <span>Loading...</span>
+  if (error) return <span>Error!</span>
 
   return (
     <CChartDoughnut
