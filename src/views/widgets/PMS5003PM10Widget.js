@@ -32,6 +32,7 @@ const PMS5003PM10Widget = () => {
       chart={
         <WidgetGraph
           Data={data.last24HoursData}
+          Title={'PM10'}
           BackGroundColor={getBackgroundColor(data.latestDataPoint[0].PM10)}
         />
       }
