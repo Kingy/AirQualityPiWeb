@@ -1,7 +1,7 @@
 import React from 'react'
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
-import PMS5003PM2_5Chart from '../../components/PMS5003PM2_5Chart'
+import PMS5003PM25Chart from '../../components/PMS5003PM2_5Chart'
 import PMS5003AllPMData from 'src/components/PMS5003AllPMData'
 import PM5003PMChart from 'src/components/PM5003PMChart'
 
@@ -23,7 +23,7 @@ const Dashboard = () => {
           <CCard className="mb-4">
             <CCardHeader>PM2.5 Reading</CCardHeader>
             <CCardBody>
-              <PMS5003PM2_5Chart />
+              <PMS5003PM25Chart />
             </CCardBody>
           </CCard>
         </CCol>
