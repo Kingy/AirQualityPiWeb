@@ -1,7 +1,7 @@
 import React from 'react'
 import { CWidgetStatsA } from '@coreui/react'
-import PMS5003LatestData from 'src/components/PMS5003LatestData'
-import PMS5003WidgetGraph from 'src/components/PMS5003WidgetGraph'
+import WidgetLatestData from 'src/components/WidgetLatestData'
+import WidgetGraph from 'src/components/WidgetGraph'
 import useFetchData from 'src/hooks/api'
 
 function getBackgroundColor(pm10) {
@@ -25,13 +25,13 @@ const PMS5003PM10Widget = () => {
       color={getBackgroundColor(data.latestDataPoint[0].PM10)}
       value={
         <>
-          <PMS5003LatestData PM10Reading={data.latestDataPoint[0].PM10} />
+          <WidgetLatestData Reading={data.latestDataPoint[0].PM10} Measurement={'µg/m³'} />
         </>
       }
       title="PM 10"
       chart={
-        <PMS5003WidgetGraph
-          PM10Data={data.last24HoursData}
+        <WidgetGraph
+          Data={data.last24HoursData}
           BackGroundColor={getBackgroundColor(data.latestDataPoint[0].PM10)}
         />
       }
