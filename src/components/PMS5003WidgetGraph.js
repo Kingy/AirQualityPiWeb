@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { getStyle } from '@coreui/utils'
 import { CChartLine } from '@coreui/react-chartjs'
-import useFetchData from 'src/hooks/api'
 
-const PMS5003WidgetGraph = () => {
-  const { data, loading, error } = useFetchData('pms5003/data?type=PM10')
+const PMS5003WidgetGraph = ({ PM10Data, BackGroundColor }) => {
+  const [updateKey, setUpdateKey] = useState(0)
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -12,21 +12,18 @@ const PMS5003WidgetGraph = () => {
         label: 'PM10',
         backgroundColor: 'transparent',
         borderColor: 'rgba(255,255,255,.55)',
-        pointBackgroundColor: getStyle('--cui-primary'),
+        pointBackgroundColor: getStyle('--cui-' + BackGroundColor),
         data: [],
       },
     ],
   })
 
   useEffect(() => {
-    // Fetch your data and then set chart data
     const fetchData = async () => {
-      // Simulating fetching data
       let recentDataPoints = []
 
-      if (!loading) {
-        recentDataPoints = data.last24HoursData.slice(-10)
-      }
+      recentDataPoints = PM10Data.slice(-10)
+
       const labels = recentDataPoints.map((point) =>
         new Date(point.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       )
@@ -37,13 +34,15 @@ const PMS5003WidgetGraph = () => {
         labels: labels,
         datasets: [{ ...chartData.datasets[0], data: dataPoints }],
       })
+      setUpdateKey((prevKey) => prevKey + 1)
     }
 
     fetchData()
-  }, [data])
+  }, [])
 
   return (
     <CChartLine
+      key={updateKey}
       className="mt-3 mx-3"
       style={{ height: '70px' }}
       data={chartData}
@@ -66,7 +65,7 @@ const PMS5003WidgetGraph = () => {
           },
           y: {
             min: 30,
-            max: 89,
+            max: 350,
             display: false,
             grid: {
               display: false,
@@ -90,6 +89,11 @@ const PMS5003WidgetGraph = () => {
       }}
     />
   )
+}
+
+PMS5003WidgetGraph.propTypes = {
+  PM10Data: PropTypes.array.isRequired,
+  BackGroundColor: PropTypes.string.isRequired,
 }
 
 export default PMS5003WidgetGraph

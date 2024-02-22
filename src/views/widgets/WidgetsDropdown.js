@@ -13,24 +13,13 @@ import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
 import { cilOptions } from '@coreui/icons'
 
-import PMS5003LatestData from 'src/components/PMS5003LatestData'
-import PMS5003WidgetGraph from 'src/components/PMS5003WidgetGraph'
+import PMS5003PM10Widget from './PMS5003PM10Widget'
 
 const WidgetsDropdown = () => {
   return (
     <CRow>
       <CCol sm={6} lg={3}>
-        <CWidgetStatsA
-          className="mb-4"
-          color="primary"
-          value={
-            <>
-              <PMS5003LatestData />
-            </>
-          }
-          title="PM 10"
-          chart={<PMS5003WidgetGraph />}
-        />
+        <PMS5003PM10Widget />
       </CCol>
       <CCol sm={6} lg={3}>
         <CWidgetStatsA

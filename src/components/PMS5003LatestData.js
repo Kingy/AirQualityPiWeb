@@ -1,17 +1,16 @@
 import React from 'react'
-import useFetchData from 'src/hooks/api'
+import PropTypes from 'prop-types'
 
-const PMS5003LatestData = () => {
-  const { data, loading, error } = useFetchData('pms5003/latest')
-
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
-
+const PMS5003LatestData = ({ PM10Reading }) => {
   return (
     <>
-      {data.data.PM10} <span className="fs-6 fw-normal">(µg/m³)</span>
+      {PM10Reading} <span className="fs-6 fw-normal">(µg/m³)</span>
     </>
   )
+}
+
+PMS5003LatestData.propTypes = {
+  PM10Reading: PropTypes.number.isRequired,
 }
 
 export default PMS5003LatestData
