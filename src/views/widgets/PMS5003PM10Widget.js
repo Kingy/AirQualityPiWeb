@@ -1,5 +1,5 @@
 import React from 'react'
-import { CWidgetStatsA } from '@coreui/react'
+import { CWidgetStatsA, CSpinner } from '@coreui/react'
 import WidgetLatestData from 'src/components/WidgetLatestData'
 import WidgetGraph from 'src/components/WidgetGraph'
 import useFetchData from 'src/hooks/api'
@@ -16,7 +16,7 @@ function getBackgroundColor(pm10) {
 const PMS5003PM10Widget = () => {
   const { data, loading, error } = useFetchData('pms5003/data?type=PM10')
 
-  if (loading) return <span>Loading...</span>
+  if (loading) return <CSpinner color="primary" variant="grow" />
   if (error) return <span>Error!</span>
 
   return (

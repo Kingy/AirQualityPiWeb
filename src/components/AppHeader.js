@@ -11,6 +11,7 @@ import {
   CHeaderToggler,
   CNavLink,
   CNavItem,
+  CSpinner,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilMenu } from '@coreui/icons'
@@ -69,7 +70,7 @@ const AppHeader = () => {
         {loading && (
           <CHeaderNav className="d-none d-md-flex ms-auto">
             <CNavItem>
-              <small className="text-body text-opacity-75">Loading...</small>
+              <CSpinner color="primary" variant="grow" />
             </CNavItem>
           </CHeaderNav>
         )}
@@ -108,7 +109,7 @@ const AppHeader = () => {
         {loading && (
           <CHeaderNav className="d-none d-md-flex ms-auto">
             <CNavItem>
-              <small className="text-body text-opacity-75">Loading...</small>
+              <CSpinner color="primary" variant="grow" />
             </CNavItem>
           </CHeaderNav>
         )}

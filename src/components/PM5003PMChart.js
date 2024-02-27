@@ -1,12 +1,12 @@
 import React from 'react'
-import { CButton, CButtonGroup, CCardBody, CCol, CRow } from '@coreui/react'
+import { CButton, CButtonGroup, CCardBody, CCol, CRow, CSpinner } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
 import useFetchData from 'src/hooks/api'
 
 const PM5003PMChart = () => {
   const { data, loading, error } = useFetchData('pms5003/last24hours')
 
-  if (loading) return <span>Loading...</span>
+  if (loading) return <CSpinner color="primary" variant="grow" />
   if (error) return <span>Error!</span>
 
   const sortedData = data.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))

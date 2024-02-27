@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { CChartDoughnut } from '@coreui/react-chartjs'
+import { CSpinner } from '@coreui/react'
 import useFetchData from 'src/hooks/api'
 
 function getBackgroundColor(pm2_5) {
@@ -88,7 +89,7 @@ const PMS5003PM2_5Chart = () => {
     ],
   })
 
-  if (loading) return <span>Loading...</span>
+  if (loading) return <CSpinner color="primary" variant="grow" />
   if (error) return <span>Error!</span>
 
   return (

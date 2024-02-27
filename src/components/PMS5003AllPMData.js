@@ -10,6 +10,7 @@ import {
   CTableRow,
   CPagination,
   CPaginationItem,
+  CSpinner,
 } from '@coreui/react'
 import useFetchData from 'src/hooks/api'
 
@@ -57,7 +58,7 @@ const PMS5003AllPMData = () => {
     </CPagination>
   )
 
-  if (loading) return <span>Loading...</span>
+  if (loading) return <CSpinner color="primary" variant="grow" />
   if (error) return <span>Error!</span>
 
   return (
