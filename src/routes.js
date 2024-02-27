@@ -50,6 +50,16 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
+// Particle Matter
+const PM1_0 = React.lazy(() => import('./views/particlematter/Pm1_0'))
+const PM2_5 = React.lazy(() => import('./views/particlematter/Pm2_5'))
+const PM10 = React.lazy(() => import('./views/particlematter/Pm10'))
+
+// Conditions
+const Temperature = React.lazy(() => import('./views/conditions/Temperature'))
+const Pressure = React.lazy(() => import('./views/conditions/Pressure'))
+const Humidity = React.lazy(() => import('./views/conditions/Humidity'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -95,6 +105,12 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+  { path: '/pm/1', name: 'PM1.0', element: PM1_0 },
+  { path: '/pm/25', name: 'PM2.5', element: PM2_5 },
+  { path: '/pm/10', name: 'PM10', element: PM10 },
+  { path: '/conditions/temperature', name: 'Temperature', element: Temperature },
+  { path: '/conditions/pressure', name: 'Pressure', element: Pressure },
+  { path: '/conditions/humidity', name: 'Humidity', element: Humidity },
 ]
 
 export default routes

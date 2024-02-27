@@ -37,7 +37,7 @@ function formatTimestamp(timestamp) {
   // Add ordinal suffix to day
   const day = date.getUTCDate()
   const suffix = ['th', 'st', 'nd', 'rd'][
-    day % 10 > 3 ? 0 : (((day % 100) - (day % 10) != 10) * day) % 10
+    day % 10 > 3 ? 0 : (((day % 100) - (day % 10) !== 10) * day) % 10
   ]
 
   return formattedDate.replace(/(\d+)(th)/, `${day}${suffix}`)

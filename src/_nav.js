@@ -17,23 +17,23 @@ const _nav = [
   {
     component: CNavGroup,
     name: 'Air Quality',
-    to: '/base',
+    to: '/pm',
     icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: 'PM1.0',
-        to: '/base/accordion',
+        to: '/pm/1',
       },
       {
         component: CNavItem,
         name: 'PM2.5',
-        to: '/base/breadcrumbs',
+        to: '/pm/25',
       },
       {
         component: CNavItem,
         name: 'PM10',
-        to: '/base/cards',
+        to: '/pm/10',
       },
     ],
   },
@@ -46,17 +46,17 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Temperature',
-        to: '/base/accordion',
+        to: '/conditions/temperature',
       },
       {
         component: CNavItem,
         name: 'Humidity',
-        to: '/base/breadcrumbs',
+        to: '/conditions/humidity',
       },
       {
         component: CNavItem,
         name: 'Pressure',
-        to: '/base/cards',
+        to: '/conditions/pressure',
       },
     ],
   },
@@ -67,19 +67,19 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Information',
-    to: '/charts',
+    to: '/information',
     icon: <CIcon icon={cilInfo} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Guide',
-    to: '/charts',
+    to: '/guide',
     icon: <CIcon icon={cilBook} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Code',
-    to: '/charts',
+    to: '/code',
     icon: <CIcon icon={cilCode} customClassName="nav-icon" />,
   },
 ]
