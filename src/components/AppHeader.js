@@ -48,6 +48,8 @@ const AppHeader = () => {
   const sidebarShow = useSelector((state) => state.sidebarShow)
   const { data, loading, error } = useWeather()
 
+  if (error) return <span>Error!</span>
+
   return (
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
