@@ -1,33 +1,15 @@
 import React from 'react'
-import {
-  CCard,
-  CCardBody,
-  CCol,
-  CCardHeader,
-  CRow,
-  CWidgetStatsA,
-  CWidgetStatsF,
-} from '@coreui/react'
-import {
-  CChartBar,
-  CChartDoughnut,
-  CChartLine,
-  CChartPie,
-  CChartPolarArea,
-  CChartRadar,
-} from '@coreui/react-chartjs'
-import CIcon from '@coreui/icons-react'
-import { cilChartPie } from '@coreui/icons'
+import { CCard, CCardBody, CCol, CCardHeader, CRow, CWidgetStatsF } from '@coreui/react'
+import { CChartBar, CChartLine, CChartPie } from '@coreui/react-chartjs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faTemperatureFull,
   faTemperatureLow,
   faTemperatureHigh,
 } from '@fortawesome/free-solid-svg-icons'
+import BME680AllData from 'src/components/BME680AllData'
 
 const Temperature = () => {
-  const random = () => Math.round(Math.random() * 100)
-
   return (
     <>
       <CRow>
@@ -71,16 +53,21 @@ const Temperature = () => {
       <CRow>
         <CCol xs={6}>
           <CCard className="mb-4">
-            <CCardHeader>Bar Chart</CCardHeader>
+            <CCardHeader>7 day Temperature</CCardHeader>
             <CCardBody>
               <CChartBar
                 data={{
-                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                  labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                   datasets: [
                     {
-                      label: 'GitHub Commits',
+                      label: 'High',
                       backgroundColor: '#f87979',
-                      data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
+                      data: [27.7, 33.1, 30.2, 28.9, 28.5, 30.5, 28.1, 29.4, 34.4],
+                    },
+                    {
+                      label: 'Low',
+                      backgroundColor: '#83c2f2',
+                      data: [13.2, 11.8, 14.9, 13.2, 12.3, 14.7, 13.6, 14.0, 15.1],
                     },
                   ],
                 }}
@@ -91,27 +78,36 @@ const Temperature = () => {
         </CCol>
         <CCol xs={6}>
           <CCard className="mb-4">
-            <CCardHeader>Line Chart</CCardHeader>
+            <CCardHeader>Monthly Averages</CCardHeader>
             <CCardBody>
               <CChartLine
                 data={{
-                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                  labels: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec',
+                  ],
                   datasets: [
                     {
-                      label: 'My First dataset',
-                      backgroundColor: 'rgba(220, 220, 220, 0.2)',
-                      borderColor: 'rgba(220, 220, 220, 1)',
-                      pointBackgroundColor: 'rgba(220, 220, 220, 1)',
-                      pointBorderColor: '#fff',
-                      data: [random(), random(), random(), random(), random(), random(), random()],
+                      label: 'High',
+                      borderColor: '#f87979',
+                      backgroundColor: '#f87979',
+                      data: [24, 26, 27, 30, 34, 37, 41, 38, 36, 31, 27, 25],
                     },
                     {
-                      label: 'My Second dataset',
-                      backgroundColor: 'rgba(151, 187, 205, 0.2)',
-                      borderColor: 'rgba(151, 187, 205, 1)',
-                      pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-                      pointBorderColor: '#fff',
-                      data: [random(), random(), random(), random(), random(), random(), random()],
+                      label: 'Low',
+                      borderColor: '#83c2f2',
+                      backgroundColor: '#83c2f2',
+                      data: [11, 14, 16, 19, 26, 29, 33, 31, 28, 23, 19, 13],
                     },
                   ],
                 }}
@@ -121,20 +117,7 @@ const Temperature = () => {
         </CCol>
         <CCol xs={6}>
           <CCard className="mb-4">
-            <CCardHeader>Doughnut Chart</CCardHeader>
-            <CCardBody>
-              <CChartDoughnut
-                data={{
-                  labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
-                  datasets: [
-                    {
-                      backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                      data: [40, 20, 80, 10],
-                    },
-                  ],
-                }}
-              />
-            </CCardBody>
+            <BME680AllData Sensor="Temperature" />
           </CCard>
         </CCol>
         <CCol xs={6}>
@@ -149,66 +132,6 @@ const Temperature = () => {
                       data: [300, 50, 100],
                       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
                       hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                    },
-                  ],
-                }}
-              />
-            </CCardBody>
-          </CCard>
-        </CCol>
-        <CCol xs={6}>
-          <CCard className="mb-4">
-            <CCardHeader>Polar Area Chart</CCardHeader>
-            <CCardBody>
-              <CChartPolarArea
-                data={{
-                  labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
-                  datasets: [
-                    {
-                      data: [11, 16, 7, 3, 14],
-                      backgroundColor: ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB'],
-                    },
-                  ],
-                }}
-              />
-            </CCardBody>
-          </CCard>
-        </CCol>
-        <CCol xs={6}>
-          <CCard className="mb-4">
-            <CCardHeader>Radar Chart</CCardHeader>
-            <CCardBody>
-              <CChartRadar
-                data={{
-                  labels: [
-                    'Eating',
-                    'Drinking',
-                    'Sleeping',
-                    'Designing',
-                    'Coding',
-                    'Cycling',
-                    'Running',
-                  ],
-                  datasets: [
-                    {
-                      label: 'My First dataset',
-                      backgroundColor: 'rgba(220, 220, 220, 0.2)',
-                      borderColor: 'rgba(220, 220, 220, 1)',
-                      pointBackgroundColor: 'rgba(220, 220, 220, 1)',
-                      pointBorderColor: '#fff',
-                      pointHighlightFill: '#fff',
-                      pointHighlightStroke: 'rgba(220, 220, 220, 1)',
-                      data: [65, 59, 90, 81, 56, 55, 40],
-                    },
-                    {
-                      label: 'My Second dataset',
-                      backgroundColor: 'rgba(151, 187, 205, 0.2)',
-                      borderColor: 'rgba(151, 187, 205, 1)',
-                      pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-                      pointBorderColor: '#fff',
-                      pointHighlightFill: '#fff',
-                      pointHighlightStroke: 'rgba(151, 187, 205, 1)',
-                      data: [28, 48, 40, 19, 96, 27, 100],
                     },
                   ],
                 }}
