@@ -23,6 +23,11 @@ jobs:
 
     - name: Build Project
       run: yarn build
+      env:
+        REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL }}
+        REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
+        REACT_APP_LOCATION_LONGITUDE: ${{ secrets.REACT_APP_LOCATION_LONGITUDE }}
+        REACT_APP_LOCATION_LATITUDE: ${{ secrets.REACT_APP_LOCATION_LATITUDE }}
 
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@v2.1.5
