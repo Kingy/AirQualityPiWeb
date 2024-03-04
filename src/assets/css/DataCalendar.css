@@ -1,0 +1,54 @@
+.react-calendar {
+  border: none !important; /* Remove the border */
+  width: 100% !important; /* Make the calendar fill the container width */
+  max-width: 100%; /* Ensure it doesn't overflow its container */
+}
+
+/* Remove padding around the calendar to make it fully stretch */
+.react-calendar__viewContainer {
+  padding: 0 !important;
+}
+
+.react-calendar__tile--active,
+.react-calendar__tile--now {
+  background: none;
+  color: inherit; /* Or any color you want for the text */
+  border: none;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #000 !important; /* Change #000 to whatever color you prefer */
+}
+
+.react-calendar__tile {
+  height: auto; /* Allows tile height to adjust to content */
+  padding: 1em; /* Adjust padding to ensure there's space for circles */
+}
+
+.react-calendar__tile.blue {
+  background-color: #39f !important;
+  color: #fff !important;
+  border-bottom: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+}
+
+.react-calendar__tile.green {
+  background-color: #2eb85c !important;
+  color: #fff !important;
+  border-bottom: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+}
+
+.react-calendar__tile.yellow {
+  background-color: #f9b115 !important;
+  color: #fff !important;
+  border-bottom: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+}
+
+.react-calendar__tile.red {
+  background-color: #e55353 !important;
+  color: #fff !important;
+  border-bottom: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+}
