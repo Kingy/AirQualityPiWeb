@@ -1,6 +1,6 @@
 import React from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow, CWidgetStatsF } from '@coreui/react'
-import { CChartBar, CChartLine, CChartPie } from '@coreui/react-chartjs'
+import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faTemperatureFull,
@@ -8,6 +8,28 @@ import {
   faTemperatureHigh,
 } from '@fortawesome/free-solid-svg-icons'
 import BME680AllData from 'src/components/BME680AllData'
+import DataCalendar from '../widgets/DataCalendar'
+
+const temperatureConfig = {
+  thresholds: [
+    { maxValue: 15, className: 'blue' }, // Cold
+    { maxValue: 25, className: 'green' }, // Moderate
+    { maxValue: 30, className: 'yellow' }, // Warm
+    { maxValue: Infinity, className: 'red' }, // Hot
+  ],
+}
+
+const temperatureData = [
+  { date: '2024-02-26', value: 22 },
+  { date: '2024-02-27', value: 28 },
+  { date: '2024-02-28', value: 14 },
+  { date: '2024-02-29', value: 31 },
+  { date: '2024-03-01', value: 29 },
+  { date: '2024-03-02', value: 20 },
+  { date: '2024-03-03', value: 26 },
+  { date: '2024-03-04', value: 18 },
+  // More data
+]
 
 const Temperature = () => {
   return (
@@ -122,20 +144,9 @@ const Temperature = () => {
         </CCol>
         <CCol xs={6}>
           <CCard className="mb-4">
-            <CCardHeader>Pie Chart</CCardHeader>
+            <CCardHeader>Monthly Averages</CCardHeader>
             <CCardBody>
-              <CChartPie
-                data={{
-                  labels: ['Red', 'Green', 'Yellow'],
-                  datasets: [
-                    {
-                      data: [300, 50, 100],
-                      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                    },
-                  ],
-                }}
-              />
+              <DataCalendar data={temperatureData} config={temperatureConfig} />
             </CCardBody>
           </CCard>
         </CCol>
